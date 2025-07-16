@@ -1,0 +1,56 @@
+generate RESTful API for managing job applications and job offers, designed for recruiters and job seekers. It includes authentication, role-based access control, and CRUD operations for jobs and applications.
+Project Structure: jobmatchhub/
+├── config/
+│   └── db.js               # MongoDB connection setup
+├── controllers/
+│   ├── authController.js  # Signup/login logic
+│   ├── jobController.js   # Job CRUD
+│   └── applicationController.js  # Applications CRUD
+├── middleware/
+│   ├── authMiddleware.js  # JWT auth check
+│   └── roleMiddleware.js  # Role-based access control
+│   └── errorMiddleware.js
+├── models/
+│   ├── User.js             # User schema
+│   ├── Job.js              # Job offer schema
+│   └── Application.js      # Job application schema
+├── routes/
+│   ├── authRoutes.js
+│   ├── jobsRoutes.js
+│   └── applicationsRoutes.js
+├── utils/
+│   └── generateToken.js    # Helper to generate JWT
+│   └── rateLimiter.js
+│   └── apiError.js
+│   └── email.js
+├── .env                    # Environment variables
+├── app.js                  # Main Express app
+├── server.js               # Starts server
+├── package.json
+└── README.md
+└── SAMPLE_DATA.md
+
+-Tech Stack
+    Node.js – Backend runtime
+    Express.js – HTTP framework
+    MongoDB + Mongoose – Database and ODM
+    JWT – Authentication
+    bcryptjs – Password hashing
+    dotenv – Environment management
+
+-User Roles
+    Job Seeker – Can view jobs, apply to them, manage own applications.
+    Recruiter – Can post job offers, view applications for their jobs.
+    Admin (optional) – Manage all users, jobs, and applications.
+
+-Authentication & Authorization
+    JWT-based authentication
+    Role-based access control middleware
+    Routes are protected depending on role (e.g., recruiters only can post jobs)
+
+ -Features
+    🔐 JWT-based signup/login
+    🔄 CRUD for jobs and applications
+    🧑‍💼 Role-based access (seeker vs recruiter)
+    🛡 Input validation (can add express-validator)
+    🗂 Modular folder structure for scaling
