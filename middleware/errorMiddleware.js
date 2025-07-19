@@ -1,34 +1,33 @@
 const ApiError = require('../utils/apiError');
 
-/**
- * Handle Mongoose validation errors
- */
+
+// Handle Mongoose validation errors
+
 const handleValidationError = (err) => {
   const errors = Object.values(err.errors).map(val => val.message);
   const message = `Validation Error: ${errors.join(', ')}`;
   return new ApiError(message, 400);
 };
 
-/**
- * Handle Mongoose duplicate key errors
- */
+
+// Handle Mongoose duplicate key errors
+
 const handleDuplicateKeyError = (err) => {
   const field = Object.keys(err.keyValue)[0];
   const message = `${field} already exists`;
   return new ApiError(message, 400);
 };
 
-/**
- * Handle Mongoose cast errors
- */
+
+// Handle Mongoose cast errors
+ 
 const handleCastError = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
   return new ApiError(message, 400);
 };
 
-/**
- * Handle JWT errors
- */
+// Handle JWT errors
+
 const handleJWTError = () => {
   return new ApiError('Invalid token, please login again', 401);
 };
@@ -37,10 +36,10 @@ const handleJWTExpiredError = () => {
   return new ApiError('Your token has expired, please login again', 401);
 };
 
-/**
- * Development error response
- */
+//  Development error response
+ 
 const sendErrorDev = (err, res) => {
+  console.error(err);
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
@@ -49,10 +48,10 @@ const sendErrorDev = (err, res) => {
   });
 };
 
-/**
- * Production error response
- */
+//  Production error response
+
 const sendErrorProd = (err, res) => {
+    console.error(err);
   // Operational, trusted error: send message to client
   if (err.isOperational) {
     res.status(err.statusCode).json({
@@ -69,9 +68,8 @@ const sendErrorProd = (err, res) => {
   }
 };
 
-/**
- * Global error handling middleware
- */
+// Global error handling middleware
+
 const errorHandler = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
@@ -93,9 +91,9 @@ const errorHandler = (err, req, res, next) => {
   }
 };
 
-/**
- * Handle unhandled routes
- */
+
+// Handle unhandled routes
+
 const notFound = (req, res, next) => {
   const error = new ApiError(`Not found - ${req.originalUrl}`, 404);
   next(error);

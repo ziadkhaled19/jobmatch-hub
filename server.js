@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 
 // Handle uncaught exceptions
 process.on('uncaughtException', (err) => {
-  console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+  console.log('uncaught exception => Shutting down...');
   console.log(err.name, err.message);
   process.exit(1);
 });
@@ -11,7 +11,7 @@ process.on('uncaughtException', (err) => {
 // Connect to database
 connectDB();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
@@ -19,7 +19,7 @@ const server = app.listen(PORT, '0.0.0.0', () => {
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
-  console.log('UNHANDLED REJECTION! 💥 Shutting down...');
+  console.log('unhandled rejection => Shutting down...');
   console.log(err.name, err.message);
   server.close(() => {
     process.exit(1);

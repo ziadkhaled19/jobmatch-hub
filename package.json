@@ -4,8 +4,8 @@
   "description": "A RESTful API for job matching platform with JWT authentication, role-based access control, and CRUD operations for jobs and applications.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "start:prod": "set NODE_ENV=production && nodemon server.js"
   },
   "keywords": [],
   "author": "",

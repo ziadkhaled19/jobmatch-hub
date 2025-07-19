@@ -20,7 +20,7 @@ router.get('/:id', apiLimiter, optionalAuth, getJob);
 
 // Protected routes - Recruiter only
 router.post('/', protect, isRecruiter, createJob);
-router.put('/:id', protect, isRecruiter, updateJob);
+router.patch('/:id', protect, isRecruiter, updateJob);
 router.delete('/:id', protect, isRecruiter, deleteJob);
 router.patch('/:id/toggle-status', protect, isRecruiter, toggleJobStatus);
 

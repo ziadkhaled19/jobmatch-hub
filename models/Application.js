@@ -16,7 +16,7 @@ const applicationSchema = new mongoose.Schema({
     maxlength: [1000, 'Cover letter cannot exceed 1000 characters']
   },
   resume: {
-    type: String, // URL to resume file
+    type: String, // url
     required: [true, 'Resume is required']
   },
   status: {
